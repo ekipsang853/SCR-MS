@@ -1,0 +1,21 @@
+services:
+  - type: web
+    name: student-course-registration-system
+    runtime: java
+    plan: free
+    rootDir: .
+    buildCommand: ./mvnw clean package -DskipTests || mvn clean package -DskipTests
+    startCommand: java -jar target/studentapp-0.0.1-SNAPSHOT.jar
+    envVars:
+      - key: JAVA_VERSION
+        value: 17
+      - key: SPRING_DATASOURCE_URL
+        sync: false
+      - key: SPRING_DATASOURCE_USERNAME
+        sync: false
+      - key: SPRING_DATASOURCE_PASSWORD
+        sync: false
+      - key: SPRING_SECURITY_USER_NAME
+        sync: false
+      - key: SPRING_SECURITY_USER_PASSWORD
+        sync: false

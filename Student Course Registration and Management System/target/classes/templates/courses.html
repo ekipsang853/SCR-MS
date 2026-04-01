@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Courses</title>
+    <link rel="stylesheet" th:href="@{/css/app.css}">
+</head>
+<body>
+<div class="app-shell">
+    <nav class="topbar">
+        <a class="brand" href="/">
+            <span class="brand-mark">SC</span>
+            <span class="brand-text">
+                <span>Student System</span>
+                <small>Admin Workspace</small>
+            </span>
+        </a>
+        <div class="nav-actions">
+            <a href="/students" class="nav-link">Students</a>
+            <a href="/courses" class="nav-link is-active">Courses</a>
+            <a href="/registrations" class="nav-link">Registrations</a>
+        </div>
+    </nav>
+
+    <main>
+        <section class="hero">
+            <div>
+                <p class="pill">Course Catalog</p>
+                <h1>Course list</h1>
+                <p>Maintain the academic catalog with cleaner metadata for codes, lecturers, and credit loads.</p>
+            </div>
+            <a href="/courses/new" class="btn btn-primary">Add New Course</a>
+        </section>
+
+        <section class="glass-panel">
+            <div class="panel-body">
+                <div class="table-shell">
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Course Name</th>
+                            <th>Course Code</th>
+                            <th>Lecturer</th>
+                            <th>Credits</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="course : ${courses}">
+                            <td th:text="${course.id}"></td>
+                            <td><strong th:text="${course.courseName}"></strong></td>
+                            <td><span class="pill" th:text="${course.courseCode}"></span></td>
+                            <td th:text="${course.lecturer} ?: 'Not assigned'"></td>
+                            <td th:text="${course.credits} ?: 'Not set'"></td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </main>
+</div>
+</body>
+</html>

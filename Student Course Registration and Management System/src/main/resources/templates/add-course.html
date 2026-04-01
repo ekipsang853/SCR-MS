@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Add Course</title>
+    <link rel="stylesheet" th:href="@{/css/app.css}">
+</head>
+<body>
+<div class="app-shell">
+    <nav class="topbar">
+        <a class="brand" href="/">
+            <span class="brand-mark">SC</span>
+            <span class="brand-text">
+                <span>Student System</span>
+                <small>Admin Workspace</small>
+            </span>
+        </a>
+        <div class="nav-actions">
+            <a href="/students" class="nav-link">Students</a>
+            <a href="/courses" class="nav-link is-active">Courses</a>
+            <a href="/registrations" class="nav-link">Registrations</a>
+        </div>
+    </nav>
+
+    <main>
+        <section class="hero">
+            <div>
+                <p class="pill">Course Editor</p>
+                <h1>Create a course record</h1>
+                <p>Add a course with the core teaching details students and administrators need.</p>
+            </div>
+        </section>
+
+        <section class="glass-panel">
+            <div class="panel-body">
+                <form th:action="@{/courses/save}" th:object="${course}" method="post" class="form-layout">
+                    <input type="hidden" th:field="*{id}">
+
+                    <div class="form-grid">
+                        <div class="field">
+                            <label for="courseName">Course Name</label>
+                            <input id="courseName" type="text" th:field="*{courseName}" required>
+                        </div>
+
+                        <div class="field">
+                            <label for="courseCode">Course Code</label>
+                            <input id="courseCode" type="text" th:field="*{courseCode}" required>
+                        </div>
+
+                        <div class="field">
+                            <label for="lecturer">Lecturer</label>
+                            <input id="lecturer" type="text" th:field="*{lecturer}">
+                        </div>
+
+                        <div class="field">
+                            <label for="credits">Credits</label>
+                            <input id="credits" type="number" th:field="*{credits}">
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">Save Course</button>
+                        <a href="/courses" class="btn btn-secondary">Back to Courses</a>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </main>
+</div>
+</body>
+</html>

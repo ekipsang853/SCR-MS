@@ -1,0 +1,1 @@
+web: java -jar target/studentapp-0.0.1-SNAPSHOT.jar

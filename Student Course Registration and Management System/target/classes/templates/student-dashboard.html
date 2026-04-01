@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Student Dashboard</title>
+    <link rel="stylesheet" th:href="@{/css/app.css}">
+</head>
+<body>
+<div class="app-shell">
+    <nav class="topbar">
+        <a class="brand" href="/student/dashboard">
+            <span class="brand-mark">SP</span>
+            <span class="brand-text">
+                <span>Student Portal</span>
+                <small>Personal Workspace</small>
+            </span>
+        </a>
+        <div class="nav-actions">
+            <a href="/student/dashboard" class="nav-link is-active">Dashboard</a>
+            <a href="/student/courses" class="nav-link">My Courses</a>
+            <form th:action="@{/logout}" method="post">
+                <button type="submit" class="btn btn-light">Logout</button>
+            </form>
+        </div>
+    </nav>
+
+    <main>
+        <section class="hero">
+            <div>
+                <p class="pill">Personal Dashboard</p>
+                <h1 th:text="'Welcome back, ' + ${student.name}"></h1>
+                <p>Review your academic profile and the courses currently registered to your account.</p>
+            </div>
+            <a href="/student/courses" class="btn btn-primary">View My Courses</a>
+        </section>
+
+        <section class="stats-grid">
+            <article class="stat-card primary">
+                <span class="stat-label">Program</span>
+                <span class="stat-value" th:text="${student.program} ?: 'N/A'"></span>
+            </article>
+            <article class="stat-card secondary">
+                <span class="stat-label">Year</span>
+                <span class="stat-value" th:text="${student.year} ?: 'N/A'"></span>
+            </article>
+            <article class="stat-card accent">
+                <span class="stat-label">Registered Courses</span>
+                <span class="stat-value" th:text="${registrationCount}"></span>
+            </article>
+        </section>
+
+        <section class="split-grid">
+            <article class="glass-panel">
+                <div class="panel-body">
+                    <div class="section-title">
+                        <div>
+                            <h3>Recent Registrations</h3>
+                            <p>Your current enrollment snapshot.</p>
+                        </div>
+                    </div>
+                    <div th:if="${#lists.isEmpty(registrations)}" class="empty-state">No courses registered yet.</div>
+                    <div th:if="${!#lists.isEmpty(registrations)}" class="registration-list">
+                        <div th:each="registration : ${registrations}" class="registration-item">
+                            <strong th:text="${registration.course.courseName}"></strong>
+                            <div class="muted">
+                                <span th:text="${registration.course.courseCode}"></span>
+                                <span> | </span>
+                                <span th:text="${registration.semester}"></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <aside class="glass-panel">
+                <div class="panel-body">
+                    <div class="section-title">
+                        <div>
+                            <h3>Profile</h3>
+                            <p>Your stored account details.</p>
+                        </div>
+                    </div>
+                    <div class="info-list">
+                        <div class="info-row">
+                            <span class="muted">Student ID</span>
+                            <strong th:text="${student.id}"></strong>
+                        </div>
+                        <div class="info-row">
+                            <span class="muted">Email</span>
+                            <strong th:text="${student.email}"></strong>
+                        </div>
+                        <div class="info-row">
+                            <span class="muted">Program</span>
+                            <strong th:text="${student.program} ?: 'Not set'"></strong>
+                        </div>
+                        <div class="info-row">
+                            <span class="muted">Year</span>
+                            <strong th:text="${student.year} ?: 'Not set'"></strong>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+        </section>
+    </main>
+</div>
+</body>
+</html>

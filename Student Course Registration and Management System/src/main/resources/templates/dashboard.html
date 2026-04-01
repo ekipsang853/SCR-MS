@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Dashboard</title>
+    <link rel="stylesheet" th:href="@{/css/app.css}">
+</head>
+<body>
+<div class="app-shell">
+    <nav class="topbar">
+        <a class="brand" href="/">
+            <span class="brand-mark">SC</span>
+            <span class="brand-text">
+                <span>Student System</span>
+                <small>Admin Workspace</small>
+            </span>
+        </a>
+        <div class="nav-actions">
+            <a href="/students" class="nav-link">Students</a>
+            <a href="/courses" class="nav-link">Courses</a>
+            <a href="/registrations" class="nav-link">Registrations</a>
+            <form th:action="@{/logout}" method="post">
+                <button type="submit" class="btn btn-light">Logout</button>
+            </form>
+        </div>
+    </nav>
+
+    <main>
+        <section class="hero">
+            <div>
+                <p class="pill">Admin Dashboard</p>
+                <h1>Run the entire registration system from one place.</h1>
+                <p>Track students, maintain the course catalog, and manage registration activity with a cleaner control surface.</p>
+            </div>
+            <div class="actions-inline">
+                <a href="/students/new" class="btn btn-primary">Add Student</a>
+                <a href="/courses/new" class="btn btn-secondary">Add Course</a>
+            </div>
+        </section>
+
+        <section class="stats-grid">
+            <article class="stat-card primary">
+                <span class="stat-label">Students</span>
+                <span class="stat-value" th:text="${studentCount}"></span>
+            </article>
+            <article class="stat-card secondary">
+                <span class="stat-label">Courses</span>
+                <span class="stat-value" th:text="${courseCount}"></span>
+            </article>
+            <article class="stat-card accent">
+                <span class="stat-label">Registrations</span>
+                <span class="stat-value" th:text="${registrationCount}"></span>
+            </article>
+        </section>
+
+        <section class="card-grid">
+            <article class="glass-panel">
+                <div class="panel-body">
+                    <div class="section-title">
+                        <div>
+                            <h3>Student Management</h3>
+                            <p>Create, edit, and prepare student accounts for portal access.</p>
+                        </div>
+                    </div>
+                    <a href="/students" class="btn btn-primary">Open Students</a>
+                </div>
+            </article>
+            <article class="glass-panel">
+                <div class="panel-body">
+                    <div class="section-title">
+                        <div>
+                            <h3>Course Catalog</h3>
+                            <p>Keep the course list current with codes, lecturers, and credits.</p>
+                        </div>
+                    </div>
+                    <a href="/courses" class="btn btn-primary">Open Courses</a>
+                </div>
+            </article>
+            <article class="glass-panel">
+                <div class="panel-body">
+                    <div class="section-title">
+                        <div>
+                            <h3>Registration Flow</h3>
+                            <p>Assign courses and review enrollment activity by semester.</p>
+                        </div>
+                    </div>
+                    <a href="/registrations" class="btn btn-primary">Open Registrations</a>
+                </div>
+            </article>
+        </section>
+    </main>
+</div>
+</body>
+</html>

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Login</title>
+    <link rel="stylesheet" th:href="@{/css/app.css}">
+</head>
+<body>
+<div class="app-shell">
+    <nav class="topbar">
+        <a class="brand" href="/login">
+            <span class="brand-mark">SC</span>
+            <span class="brand-text">
+                <span>Student System</span>
+                <small>Registration and Management</small>
+            </span>
+        </a>
+    </nav>
+
+    <main class="auth-shell">
+        <section class="glass-panel auth-panel auth-highlight">
+            <p class="pill">Unified Access</p>
+            <h1 class="auth-title">Modern access for admins and students.</h1>
+            <p>Manage operations from the admin side or sign in as a student to view your personal dashboard and registered courses.</p>
+            <ul class="auth-list">
+                <li>Admins sign in with the configured system username and password.</li>
+                <li>Students sign in with their email address and assigned password.</li>
+                <li>Role-based routing sends each user to the correct experience after login.</li>
+            </ul>
+        </section>
+
+        <section class="glass-panel auth-panel">
+            <p class="pill">Secure Sign In</p>
+            <h2 class="auth-title">Login</h2>
+            <p class="auth-subtitle">Use your admin username or student email to continue.</p>
+
+            <div th:if="${param.error}" class="alert alert-danger">Invalid username or password.</div>
+            <div th:if="${param.logout}" class="alert alert-success">You have been logged out.</div>
+            <div th:if="${param.denied}" class="alert alert-warning">You do not have access to that page.</div>
+
+            <form th:action="@{/login}" method="post" class="form-layout">
+                <div class="field">
+                    <label for="username">Username or Student Email</label>
+                    <input id="username" name="username" type="text" required>
+                </div>
+                <div class="field">
+                    <label for="password">Password</label>
+                    <input id="password" name="password" type="password" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Login</button>
+            </form>
+        </section>
+    </main>
+</div>
+</body>
+</html>

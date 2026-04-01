@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Registrations</title>
+    <link rel="stylesheet" th:href="@{/css/app.css}">
+</head>
+<body>
+<div class="app-shell">
+    <nav class="topbar">
+        <a class="brand" href="/">
+            <span class="brand-mark">SC</span>
+            <span class="brand-text">
+                <span>Student System</span>
+                <small>Admin Workspace</small>
+            </span>
+        </a>
+        <div class="nav-actions">
+            <a href="/students" class="nav-link">Students</a>
+            <a href="/courses" class="nav-link">Courses</a>
+            <a href="/registrations" class="nav-link is-active">Registrations</a>
+        </div>
+    </nav>
+
+    <main>
+        <section class="hero">
+            <div>
+                <p class="pill">Registrations</p>
+                <h1>Enrollment activity</h1>
+                <p>Review who is enrolled in what, and keep semester registrations clean and current.</p>
+            </div>
+            <a href="/registrations/new" class="btn btn-primary">Register Course</a>
+        </section>
+
+        <section class="glass-panel">
+            <div class="panel-body">
+                <div class="table-shell">
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Student</th>
+                            <th>Course</th>
+                            <th>Semester</th>
+                            <th>Action</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="reg : ${registrations}">
+                            <td th:text="${reg.id}"></td>
+                            <td><strong th:text="${reg.student.name}"></strong></td>
+                            <td>
+                                <div th:text="${reg.course.courseName}"></div>
+                                <div class="muted" th:text="${reg.course.courseCode}"></div>
+                            </td>
+                            <td><span class="pill" th:text="${reg.semester}"></span></td>
+                            <td>
+                                <a th:href="@{/registrations/delete/{id}(id=${reg.id})}" class="btn btn-danger">Drop</a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </main>
+</div>
+</body>
+</html>

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Students</title>
+    <link rel="stylesheet" th:href="@{/css/app.css}">
+</head>
+<body>
+<div class="app-shell">
+    <nav class="topbar">
+        <a class="brand" href="/">
+            <span class="brand-mark">SC</span>
+            <span class="brand-text">
+                <span>Student System</span>
+                <small>Admin Workspace</small>
+            </span>
+        </a>
+        <div class="nav-actions">
+            <a href="/students" class="nav-link is-active">Students</a>
+            <a href="/courses" class="nav-link">Courses</a>
+            <a href="/registrations" class="nav-link">Registrations</a>
+        </div>
+    </nav>
+
+    <main>
+        <section class="hero">
+            <div>
+                <p class="pill">Students</p>
+                <h1>Student directory</h1>
+                <p>Manage student identities, program details, and the credentials they use to access the portal.</p>
+            </div>
+            <a href="/students/new" class="btn btn-primary">Add New Student</a>
+        </section>
+
+        <section class="glass-panel">
+            <div class="panel-body">
+                <div class="table-shell">
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Email</th>
+                            <th>Program</th>
+                            <th>Year</th>
+                            <th>Actions</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr th:each="student : ${students}">
+                            <td th:text="${student.id}"></td>
+                            <td><strong th:text="${student.name}"></strong></td>
+                            <td><span class="pill" th:text="${student.email}"></span></td>
+                            <td th:text="${student.program} ?: 'Not set'"></td>
+                            <td th:text="${student.year} ?: 'Not set'"></td>
+                            <td class="actions-inline">
+                                <a th:href="@{/students/edit/{id}(id=${student.id})}" class="btn btn-warning">Edit</a>
+                                <a th:href="@{/students/delete/{id}(id=${student.id})}" class="btn btn-danger">Delete</a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+    </main>
+</div>
+</body>
+</html>

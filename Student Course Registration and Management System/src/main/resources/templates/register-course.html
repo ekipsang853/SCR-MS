@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Register Course</title>
+    <link rel="stylesheet" th:href="@{/css/app.css}">
+</head>
+<body>
+<div class="app-shell">
+    <nav class="topbar">
+        <a class="brand" href="/">
+            <span class="brand-mark">SC</span>
+            <span class="brand-text">
+                <span>Student System</span>
+                <small>Admin Workspace</small>
+            </span>
+        </a>
+        <div class="nav-actions">
+            <a href="/students" class="nav-link">Students</a>
+            <a href="/courses" class="nav-link">Courses</a>
+            <a href="/registrations" class="nav-link is-active">Registrations</a>
+        </div>
+    </nav>
+
+    <main>
+        <section class="hero">
+            <div>
+                <p class="pill">New Registration</p>
+                <h1>Register a course</h1>
+                <p>Link a student to a course and attach the correct semester in a clearer workflow.</p>
+            </div>
+        </section>
+
+        <section class="glass-panel">
+            <div class="panel-body">
+                <form th:action="@{/registrations/save}" method="post" class="form-layout">
+                    <div class="form-grid">
+                        <div class="field">
+                            <label for="studentId">Select Student</label>
+                            <select id="studentId" name="studentId" required>
+                                <option value="">Choose a student</option>
+                                <option th:each="student : ${students}"
+                                        th:value="${student.id}"
+                                        th:text="${student.name}">
+                                </option>
+                            </select>
+                        </div>
+
+                        <div class="field">
+                            <label for="courseId">Select Course</label>
+                            <select id="courseId" name="courseId" required>
+                                <option value="">Choose a course</option>
+                                <option th:each="course : ${courses}"
+                                        th:value="${course.id}"
+                                        th:text="${course.courseName}">
+                                </option>
+                            </select>
+                        </div>
+
+                        <div class="field field-full">
+                            <label for="semester">Semester</label>
+                            <input id="semester" type="text" name="semester" placeholder="Semester 1" required>
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">Register Course</button>
+                        <a href="/registrations" class="btn btn-secondary">Back to Registrations</a>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </main>
+</div>
+</body>
+</html>

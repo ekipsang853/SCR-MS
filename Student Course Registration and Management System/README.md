@@ -168,16 +168,16 @@ http://localhost:8080
 ## 📸 Screenshots
 
 ### Dashboard
-![Dashboard](screenshots/dashboard.png)
+![Dashboard](screenshots/Admin.png)
 
 ### Students Page
-![Students](screenshots/students.png)
+![Students](screenshots/Student-portal.png)
 
 ### Courses Page
-![Courses](screenshots/courses.png)
+![Courses](screenshots/Course-catalog.png)
 
 ### Registrations Page
-![Registrations](screenshots/registrations.png)
+![Registrations](screenshots/Registration-catalog.png)
 
 ---
 
